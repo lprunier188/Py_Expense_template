@@ -2,6 +2,8 @@ from PyInquirer import prompt
 from examples import custom_style_2
 from expense import expense_questions,new_expense
 from user import user_questions,add_user
+import os
+
 
 def ask_option():
     main_option = {
@@ -20,12 +22,21 @@ def ask_option():
         ask_option()
 
 def main():
-    f = open("expense_report.csv", "w")
-    f.write("amount,label,spender\n")
-    f.close()
-    f = open("users.csv", "w")
-    f.write("name\n")
-    f.close()
+    if not os.path.isfile('./expense_report.csv'):
+        f = open("expense_report.csv", "w")
+        f.write("amount,label,spender\n")
+        f.close()
+    
+    if not os.path.isfile('./users.csv'):
+        f = open("users.csv", "w")
+        f.write("name\n")
+        f.close()
+    else :
+        f = open("users.csv", "r")
+        users = f.read().split('\n')
+        users = users[1:-1]
+        spender["choices"] = users
+
     ask_option()
 
 main()

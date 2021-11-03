@@ -12,11 +12,16 @@ expense_questions = [
         "message":"New Expense - Label: ",
     },
     {
-        "type":"input",
+        "type":"list",
         "name":"spender",
         "message":"New Expense - Spender: ",
+        "choices": []
     },
-
+    {
+        "type":"input",
+        "name":"involved",
+        "message":"New Expense - Involved: ",
+    },
 ]
 
 def new_expense(*args):
